@@ -65,7 +65,7 @@ void util::getPrimeNumberBounds(int* lowestNumber, int* highestNumber) {
 		cin >> *lowestNumber;
 	}
 
-	cout << "\nPlease enter lower bound number:";
+	cout << "\nPlease enter higher bound number:";
 	cin >> *highestNumber;
 
 	while (*lowestNumber > *highestNumber) {

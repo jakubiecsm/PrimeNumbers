@@ -21,34 +21,32 @@ void parallelDivisionV1::calculatePrimeNumbers(PrimeNumbersResult& primeNumbersR
 	int numbersToCalculate = HIGHER_BOUND - LOWER_BOUND + 1;
 	bool* numbers = primeNumbersResult.getProcessedNumbers();
 	int index = 0;
+	int sindex = 0; //index of an array from which to start computations
 
 	//Start with odd number
-	if (LOWER_BOUND == 1) {
+	if (LOWER_BOUND == 1 || LOWER_BOUND == 2) {
 		numbers[1] = true;
-		index = 2;
+		sindex = 2;
 	}
 	else if (LOWER_BOUND == 2) {
 		numbers[0] = true;
-		index = 1;
+		sindex = 1;
 	}
 	else if (LOWER_BOUND % 2 == 0) {
-		index = 1;
+		sindex = 1;
 	}
 
-	//Don't perform computations for even numbers
 	omp_set_num_threads(8);
-	cout << 
 
 #pragma omp parallel
-
-#pragma omp for
 	{
-		cout << index << endl << endl;
-		for (index; index < numbersToCalculate; index += 2) {
+#pragma omp for
+		for (index = sindex; index < numbersToCalculate; index += 2) {
 			//actual number is index + LOWER_BOUND
 			if (parallelDivisionCommon::isNumberPrime(index + LOWER_BOUND)) {
 				numbers[index] = true;
 			}
 		}
 	}
+
 }

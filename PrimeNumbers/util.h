@@ -1,6 +1,7 @@
 #pragma once
+
 #include "PrimeNumbersResult.h"
-#include <Windows.h>;
+#include <Windows.h>
 #include <chrono>
 
 using namespace std;
