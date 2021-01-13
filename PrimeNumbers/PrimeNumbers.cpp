@@ -1,24 +1,42 @@
 #pragma once
 #include <iostream>
 #include "util.h"
-#include "SequenceDivisionV1.h"
-#include "SequenceDivisionV2.h"
-#include "SequenceDivisionV3.h"
-#include "sequenceEratostenesV1.h"
-#include "parallelDivisionV1.h"
-
-using namespace std;
+#include "seqDiv.h"
+#include "parDiv.h"
+#include "seqAdd.h"
+#include "parAdd.h"
 
 
 int main() {
-	int lowestBound, highestBound;
+	int lowerBound, higherBound;
 
-	util::getPrimeNumberBounds(&lowestBound, &highestBound);
-	PrimeNumbersResult primeNumberResult(lowestBound, highestBound, false); //3rd parameter to true if eratostenes
+	for (int i = 2; i <= 8; i *= 2) {
+		lowerBound = 2;
+		higherBound = 100000000;
+		parAddDom(lowerBound, higherBound, i);
 
-	//util::callPrimeNumbersCalculator(primeNumberResult, &performParallelDivisionV1);
-	util::callPrimeNumbersCalculator(primeNumberResult, &performSequenceDivisionV3Primes);
-	util::displayResult(primeNumberResult);
+
+		lowerBound = 50000000;
+		higherBound = 100000000;
+		parAddDom(lowerBound, higherBound, i);
+
+		lowerBound = 2;
+		higherBound = 50000000;
+		parAddDom(lowerBound, higherBound, i);
+	}
+
+
+
+	//seqDiv2(lowerBound, higherBound);
+	//seqDivPrimes1(lowerBound, higherBound);
+	//seqAdd(lowerBound, higherBound);
+	//seqAdd(lowerBound, higherBound);
+	//parAddFunc(lowerBound, higherBound, 8);
+	//parAddDom(lowerBound, higherBound, 8);
+	//parDiv1(lowerBound, higherBound, 8);
+	//parDiv2(lowerBound, higherBound, 8);
+	//seqDivPrimes1(lowerBound, higherBound);
+	//parDivPrimes1(lowerBound, higherBound, 8);
 
 	return 1;
 }

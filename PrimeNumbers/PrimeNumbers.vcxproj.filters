@@ -13,84 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\sequenceDivision">
-      <UniqueIdentifier>{3915312f-1af3-440d-93ac-9dde8bc4b3c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sequenceDivision">
-      <UniqueIdentifier>{9cc18a11-e761-4ae5-b173-b6c8f129ea0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\parallelDivision">
-      <UniqueIdentifier>{f0c6b821-60f4-4ef8-bc1e-00760db0b90e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\parallelDivision">
-      <UniqueIdentifier>{c6df0891-89bf-421f-a55b-688468d5d3f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sequenceEratostenes">
-      <UniqueIdentifier>{5a24a909-b875-4f2f-b7f1-d29f1d9661d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sequenceEratostenes">
-      <UniqueIdentifier>{9dbdc629-c57e-403a-b263-b4ca0ab2bcd1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\parallelEratostenes">
-      <UniqueIdentifier>{d6fd358f-6f93-4545-8bc8-6c3af2f92d24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\parallelEratostenes">
-      <UniqueIdentifier>{82b9e153-957c-4f6c-96b7-9dd76cdc7dbf}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PrimeNumbers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PrimeNumbersResult.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SequenceDivisionV1.cpp">
-      <Filter>Source Files\sequenceDivision</Filter>
+    <ClCompile Include="parDiv.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SequenceDivisionV2.cpp">
-      <Filter>Source Files\sequenceDivision</Filter>
+    <ClCompile Include="seqDiv.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SequenceDivisionV3.cpp">
-      <Filter>Source Files\sequenceDivision</Filter>
+    <ClCompile Include="seqAdd.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="parallelDivisionV1.cpp">
-      <Filter>Source Files\parallelDivision</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelDivisionCommon.cpp">
-      <Filter>Source Files\parallelDivision</Filter>
-    </ClCompile>
-    <ClCompile Include="sequenceEratostenesV1.cpp">
-      <Filter>Source Files\sequenceEratostenes</Filter>
+    <ClCompile Include="parAdd.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PrimeNumbersResult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SequenceDivisionV1.h">
-      <Filter>Header Files\sequenceDivision</Filter>
+    <ClInclude Include="parDiv.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SequenceDivisionV2.h">
-      <Filter>Header Files\sequenceDivision</Filter>
+    <ClInclude Include="seqDiv.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SequenceDivisionV3.h">
-      <Filter>Header Files\sequenceDivision</Filter>
+    <ClInclude Include="seqAdd.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="parallelDivisionV1.h">
-      <Filter>Header Files\parallelDivision</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelDivisionCommon.h">
-      <Filter>Header Files\parallelDivision</Filter>
-    </ClInclude>
-    <ClInclude Include="sequenceEratostenesV1.h">
-      <Filter>Header Files\sequenceEratostenes</Filter>
+    <ClInclude Include="parAdd.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

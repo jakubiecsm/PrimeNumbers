@@ -88,6 +88,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,24 +142,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="parallelDivisionCommon.cpp" />
-    <ClCompile Include="parallelDivisionV1.cpp" />
+    <ClCompile Include="parAdd.cpp" />
+    <ClCompile Include="parDiv.cpp" />
     <ClCompile Include="PrimeNumbers.cpp" />
-    <ClCompile Include="PrimeNumbersResult.cpp" />
-    <ClCompile Include="SequenceDivisionV1.cpp" />
-    <ClCompile Include="SequenceDivisionV2.cpp" />
-    <ClCompile Include="SequenceDivisionV3.cpp" />
-    <ClCompile Include="sequenceEratostenesV1.cpp" />
+    <ClCompile Include="seqAdd.cpp" />
+    <ClCompile Include="seqDiv.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="parallelDivisionCommon.h" />
-    <ClInclude Include="parallelDivisionV1.h" />
-    <ClInclude Include="PrimeNumbersResult.h" />
-    <ClInclude Include="SequenceDivisionV1.h" />
-    <ClInclude Include="SequenceDivisionV2.h" />
-    <ClInclude Include="SequenceDivisionV3.h" />
-    <ClInclude Include="sequenceEratostenesV1.h" />
+    <ClInclude Include="parAdd.h" />
+    <ClInclude Include="parDiv.h" />
+    <ClInclude Include="seqAdd.h" />
+    <ClInclude Include="seqDiv.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

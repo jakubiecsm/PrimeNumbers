@@ -1,58 +1,41 @@
+#pragma once
+
 #include "util.h"
 
-void printAlgorithmName(string algorithmName);
-void printPrimesFromDivision(bool* processedNumbers, int& howManyPrimeNumbers, const int HOW_MANY, const int LOWER_BOUND);
-void printPrimesFromEratostenes(bool* processedNumbers, int& howManyPrimeNumbers, const int HIGHER_BOUND, const int LOWER_BOUND);
-void printNumber(int index, int lowerBound, int howManyPrinted);
-
-void util::displayResult(PrimeNumbersResult primeNumbersResult) {
-	int howManyPrimeNumbers = 0;
-	const int LOWER_BOUND = primeNumbersResult.getLowestBound();
-	const int HIGHER_BOUND = primeNumbersResult.getHighestBound();
-	bool* processedNumbers = primeNumbersResult.getProcessedNumbers();
-
-	printAlgorithmName(primeNumbersResult.getAlgorithmName());
-
-	if (primeNumbersResult.isEratostenes()) {
-		printPrimesFromEratostenes(primeNumbersResult.getEratostenesProcessedNumbers(), howManyPrimeNumbers, HIGHER_BOUND, LOWER_BOUND);
-	}
-	else {
-		const int SECTION_SIZE = HIGHER_BOUND - LOWER_BOUND + 1;
-		printPrimesFromDivision(primeNumbersResult.getProcessedNumbers(), howManyPrimeNumbers, SECTION_SIZE, LOWER_BOUND);
-	}
-
-	cout << endl << endl << "Found: " << howManyPrimeNumbers << " prime numbers" << endl;
-	cout << "Time of computation: " << primeNumbersResult.getComputingTime() * 10e6 << " us" << endl;
+void util::displayProcessingTime(double processingTime) {
+	cout << "\nCalculation time: " << processingTime << " us" << endl;
 }
 
-void printPrimesFromDivision(bool* processedNumbers, int& howManyPrimeNumbers, const int HOW_MANY, const int LOWER_BOUND) {
-	for (int i = 0; i < HOW_MANY; ++i) {
-		if (processedNumbers[i] == 1) {
-			printNumber(i, LOWER_BOUND, howManyPrimeNumbers++);
-		}
-	}
-}
-
-void printPrimesFromEratostenes(bool* processedNumbers, int& howManyPrimeNumbers, const int HIGHER_BOUND, const int LOWER_BOUND) {
-	for (int i = LOWER_BOUND - 2; i < HIGHER_BOUND - 1; ++i) {
-		if (processedNumbers[i] == 1) {
-			printNumber(i - LOWER_BOUND + 2, LOWER_BOUND, howManyPrimeNumbers++);
-		}
-	}
-}
-
-void printAlgorithmName(string algorithmName) {
+void util::displayPrimeNumbers(int* primeNumbers, const int NUMBER_OF_PRIMES) {
 	string SEPARATOR = "\n********************************************************\n";
-	cout << SEPARATOR << algorithmName << SEPARATOR;
+	cout << SEPARATOR << "Found " << NUMBER_OF_PRIMES << " prime numbers" << SEPARATOR;
+
+	sort(primeNumbers, primeNumbers + NUMBER_OF_PRIMES);
+
+	for (int i = 0; i < NUMBER_OF_PRIMES; ++i) {
+		if (i % 10 == 0) {
+			cout << endl;
+		}
+		cout << primeNumbers[i] << "\t";
+	}
+
 }
 
-void printNumber(int index, int lowerBound, int howManyPrinted) {
-	const int NUMBERS_IN_ROW = 10;
+void util::displayPrimesFromBool(bool* complexNumbers, const int LOWER_BOUND, const int HIGHER_BOUND, const int NUMBER_OF_PRIMES) {
+	string SEPARATOR = "\n********************************************************\n";
+	cout << SEPARATOR << "Found " << NUMBER_OF_PRIMES << " prime numbers" << SEPARATOR;
 
-	if (index != 0 && howManyPrinted % NUMBERS_IN_ROW == 0) {
-		cout << endl;
+	int alreadyPrinted = 0;
+	const int INTERVAL_SIZE = HIGHER_BOUND - LOWER_BOUND + 1;
+
+	for (int i = 0; i < INTERVAL_SIZE; ++i) {
+		if (!complexNumbers[i]) {
+			if (alreadyPrinted++ % 10 == 0) {
+				cout << endl;
+			}
+			cout << i + LOWER_BOUND << "\t";
+		}
 	}
-	cout << lowerBound + index << "\t";
 }
 
 void util::getPrimeNumberBounds(int* lowestNumber, int* highestNumber) {
@@ -78,10 +61,6 @@ void util::getPrimeNumberBounds(int* lowestNumber, int* highestNumber) {
 	Sleep(2000);
 }
 
-void util::callPrimeNumbersCalculator(PrimeNumbersResult& primeNumbersResult,  void(*function)(PrimeNumbersResult&)) {
-	function(primeNumbersResult);
-}
-
 bool util::isDivisible(int number, int divisor) {
 	float result = (float)number / (float)divisor;
 	
@@ -90,4 +69,44 @@ bool util::isDivisible(int number, int divisor) {
 
 int util::getHighestDivisor(int number) {
 	return (int)sqrt(number);
+}
+
+//Function returns number of already calculated primes
+int util::calculatePrimes(int* primes, const int NUMBER) {
+	int numberOfPrimes;
+	if (NUMBER <= 2) {
+		primes[0] = 2;
+		return 1;
+	}
+	else numberOfPrimes = calculatePrimes(primes, getHighestDivisor(NUMBER));
+
+	bool isPrime;
+	for (int number = primes[numberOfPrimes - 1]; number <= NUMBER; ++number) {
+		isPrime = true;
+		for (int i = 0; i < numberOfPrimes; ++i) {
+			if (number % primes[i] == 0) {
+				isPrime = false;
+				break;
+			}
+		}
+			
+		if (isPrime) primes[numberOfPrimes++] = number;
+	}
+
+	return numberOfPrimes;
+}
+
+int util::calculatePrimesSieve(int* primes, const int NUMBER) {
+	bool* areNotPrime = new bool[NUMBER + 1]{ 0 };
+	int numberOfCalculatedPrimes = 0;
+
+	for (int number = 2; number <= NUMBER; ++number) {
+		if (!areNotPrime[number]) {
+			for (int i = 2 * number; i <= NUMBER; i += number) 
+				areNotPrime[i] = true;
+			
+			primes[numberOfCalculatedPrimes++] = number;
+		}
+	}
+	return numberOfCalculatedPrimes;
 }
